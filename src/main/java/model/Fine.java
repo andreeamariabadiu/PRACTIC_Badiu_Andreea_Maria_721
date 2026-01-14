@@ -31,12 +31,21 @@ public class Fine {
         this.id = id;
     }
 
-    public FineReason getReason() {
-        return reason;
+    @JsonProperty("reason")
+    public void setReasonFromString(String typeRaw) {
+        if ("SPEEDING".equals(typeRaw)) {
+            this.reason = FineReason.SPEEDING;
+        }
+        else if ("RED_LIGHT".equals(typeRaw)) {
+            this.reason = FineReason.RED_LIGHT;
+        }
+        else {
+            this.reason = FineReason.OTHER;
+        }
     }
 
-    public void setReason(FineReason reason) {
-        this.reason = reason;
+    public FineReason getReason() {
+        return reason;
     }
 
     public int getTimeSlot() {

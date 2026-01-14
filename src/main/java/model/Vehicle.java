@@ -51,20 +51,36 @@ public class Vehicle {
         this.ownerCity = ownerCity;
     }
 
+    @JsonProperty("status")
+    public void setVehicleStatusFromString(String statusRaw) {
+        if ("ACTIVE".equals(statusRaw)) {
+            this.status = VehicleStatus.ACTIVE;
+        }
+        else {
+            this.status = VehicleStatus.BLOCKED;
+        }
+    }
+
     public VehicleStatus getStatus() {
         return status;
     }
 
-    public void setStatus(VehicleStatus status) {
-        this.status = status;
+    @JsonProperty("type")
+    public void setVehicleTypeFromString(String typeRaw) {
+        if ("CAR".equals(typeRaw)) {
+            this.type = VehicleType.CAR;
+        }
+        else if ("BUS".equals(typeRaw)) {
+            this.type = VehicleType.BUS;
+        }
+        else {
+            this.type = VehicleType.TRUCK;
+        }
     }
+
 
     public VehicleType getType() {
         return type;
-    }
-
-    public void setType(VehicleType type) {
-        this.type = type;
     }
 
 
